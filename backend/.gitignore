@@ -1,0 +1,15 @@
+# Dependências
+node_modules/
+dist/
+build/
+
+# Variáveis de ambiente
+.env
+
+# Prisma
+/prisma/*.db
+/prisma/*.db-journal
+
+# Logs e Cache
+npm-debug.log*
+.eslintcache
