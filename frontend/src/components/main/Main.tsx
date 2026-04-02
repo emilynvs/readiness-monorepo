@@ -14,23 +14,25 @@ export const Main = () => {
     return <p>Nenhuma tarefa cadastrada</p>;
   }
   return (
-    <section>
-      <h2>Minhas tarefas</h2>
+    <section className="grid grid-cols-4 lg:grid-cols-4 gap-3 m-5">
+      {tarefas.map((tarefa) => (
+        <div
+          key={tarefa.id}
+          className="flex gap-3 p-2 border-2 border-solid rounded-xl  flex-col justify-center"
+        >
+          <span className="font-semibold">{tarefa.titulo}</span>
 
-      <div>
-        {tarefas.map((tarefa) => (
-          <div key={tarefa.id}>
-            <div>
-              <span>{tarefa.titulo}</span>
-              <span>
-                Criada em: {new Date(tarefa.createdAt).toLocaleDateString()}
-              </span>
-            </div>
-
-            <Link href={`/cronometro/${tarefa.id}`}>Foco</Link>
-          </div>
-        ))}
-      </div>
+          <span>
+            Criada em: {new Date(tarefa.createdAt).toLocaleDateString()}
+          </span>
+          <Link
+            href={`/cronometro/${tarefa.id}`}
+            className="border-2 border-solid rounded-xl  w-15 text-center"
+          >
+            Foco
+          </Link>
+        </div>
+      ))}
     </section>
   );
 };

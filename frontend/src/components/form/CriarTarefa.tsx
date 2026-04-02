@@ -17,6 +17,7 @@ export const CriarTarefa = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Minha lista de tarefas</h2>
       <input
         value={texto}
         onChange={(e) => setTexto(e.target.value)}
