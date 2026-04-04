@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import * as tarefaService from "../services/tarefaService";
 import { CreateTarefaDTO } from "../models/tarefaDTO";
+import { Tarefa } from "@prisma/client";
 
 export const getAll = async (req: Request, res: Response) => {
   try {
@@ -26,5 +27,17 @@ export const create = async (req: Request, res: Response) => {
       error: "Erro interno ao cadastrar tarefa",
       details: error,
     });
+  }
+};
+
+export const updateCheck = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params as { id: string };
+
+    const tarefa = await tarefaService.updateCheck(id);
+
+    return res.status(200).json(tarefa);
+  } catch (error) {
+    console.error("Erro ao concluir tarefa");
   }
 };

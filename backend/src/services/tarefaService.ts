@@ -14,3 +14,26 @@ export const create = async (dados: CreateTarefaDTO) => {
     },
   });
 };
+
+export const updateCheck = async (id: string) => {
+  const tarefaEncontrada = await findById(id);
+
+  if (!tarefaEncontrada) throw new Error("Tarefa não encontrada");
+
+  return await prisma.tarefa.update({
+    where: {
+      id,
+    },
+    data: {
+      concluido: !tarefaEncontrada.concluido,
+    },
+  });
+};
+
+export const findById = async (id: string) => {
+  return await prisma.tarefa.findUnique({
+    where: {
+      id,
+    },
+  });
+};

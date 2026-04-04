@@ -11,4 +11,9 @@ export const tarefaService = {
     const response = await api.post("/tarefas/criar", { titulo });
     return response.data;
   },
+
+  atualizarCheck: async (id: string) => {
+    const response = await api.put(`/tarefas/atualizarCheck/${id}`);
+    return response.data;
+  },
 };

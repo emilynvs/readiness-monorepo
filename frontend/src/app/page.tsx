@@ -1,5 +1,5 @@
+import { Main } from "@/components/commomUi/main/Main";
 import { CriarTarefa } from "@/components/form/CriarTarefa";
-import { Main } from "@/components/main/Main";
 
 export default function Home() {
   return (

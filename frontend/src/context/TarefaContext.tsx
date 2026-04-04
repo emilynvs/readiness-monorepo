@@ -20,6 +20,7 @@ interface TarefaContextData {
   tarefas: Tarefa[];
   addTarefa: (title: string) => Promise<void>;
   loading: boolean;
+  updateCheck: (id: string) => Promise<void>;
 }
 
 const TarefaContext = createContext<TarefaContextData>({} as TarefaContextData);
@@ -50,8 +51,21 @@ export const TarefaProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const updateCheck = async (id: string) => {
+    setTarefas((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, concluido: !t.concluido } : t)),
+    );
+    try {
+      const checkAtualizado = await tarefaService.atualizarCheck(id);
+    } catch (error) {
+      console.error("Erro ao localizar tarefa", error);
+    }
+  };
+
   return (
-    <TarefaContext.Provider value={{ tarefas, addTarefa, loading }}>
+    <TarefaContext.Provider
+      value={{ tarefas, updateCheck, addTarefa, loading }}
+    >
       {children}
     </TarefaContext.Provider>
   );

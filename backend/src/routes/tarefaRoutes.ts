@@ -7,4 +7,6 @@ router.get("/", tarefaController.getAll);
 
 router.post("/criar", tarefaController.create);
 
+router.put("/atualizarCheck/:id", tarefaController.updateCheck);
+
 export default router;
