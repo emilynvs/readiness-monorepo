@@ -45,7 +45,7 @@ async function iniciarServidor() {
     });
   } catch (error) {
     console.error("Falha ao iniciar o servidor: ", error);
-    await prisma.$disconnet();
+    await prisma.$disconnect();
     process.exit(1);
   }
 }

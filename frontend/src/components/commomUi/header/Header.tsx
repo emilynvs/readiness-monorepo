@@ -7,14 +7,10 @@ export default function Header() {
         <span className="font-bold text-xl">READINESS</span>
         <nav className="flex justify-between items-center gap-6">
           <Link href="/">Home</Link>
+          <Link href="/cronometro">Metas</Link>
           <Link href="/cronometro">Cronometro</Link>
+          <Link href="/concluidas">Conluídas</Link>
         </nav>
-        <button
-          className="text-right cursor-pointer
-"
-        >
-          Login
-        </button>
       </header>
     </>
   );
