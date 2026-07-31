@@ -19,11 +19,18 @@ const theme = {
       black: "hover:bg-black",
       white: "hover:bg-white",
       gray: "hover:bg-stone-300",
+      green: "hover:bg-green-500",
       //danger: "#c94c4c",
       danger: "hover:bg-red-500",
+      warning: "hover:bg-amber-300",
     },
   },
   font: {
+    textColor: {
+      white: "text-white",
+      black: "text-black",
+      gray: "text-stone-300",
+    },
     hoverText: {
       white: "hover:text-white",
       black: "hover:text-black",
