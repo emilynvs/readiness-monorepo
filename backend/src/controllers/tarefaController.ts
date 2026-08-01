@@ -41,3 +41,12 @@ export const updateCheck = async (req: Request, res: Response) => {
     console.error("Erro ao concluir tarefa");
   }
 };
+
+export const deletarTarefa = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params as { id: string };
+    const descarte = await tarefaService.deletarTarefa(id);
+  } catch (error) {
+    console.error("Erro ao concluir tarefa");
+  }
+};

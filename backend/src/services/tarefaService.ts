@@ -1,3 +1,4 @@
+import { Tarefa } from "@prisma/client";
 import { prisma } from "../database/prisma";
 import { CreateTarefaDTO } from "../models/tarefaDTO";
 
@@ -32,6 +33,18 @@ export const updateCheck = async (id: string) => {
 
 export const findById = async (id: string) => {
   return await prisma.tarefa.findUnique({
+    where: {
+      id,
+    },
+  });
+};
+
+export const deletarTarefa = async (id: string) => {
+  const tarefaEncontrada = await findById(id);
+
+  if (!tarefaEncontrada) throw new Error("Tarefa não encontrada");
+
+  return await prisma.tarefa.delete({
     where: {
       id,
     },
