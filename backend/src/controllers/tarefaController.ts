@@ -33,9 +33,7 @@ export const create = async (req: Request, res: Response) => {
 export const updateCheck = async (req: Request, res: Response) => {
   try {
     const { id } = req.params as { id: string };
-
     const tarefa = await tarefaService.updateCheck(id);
-
     return res.status(200).json(tarefa);
   } catch (error) {
     console.error("Erro ao concluir tarefa");
@@ -47,6 +45,6 @@ export const deletarTarefa = async (req: Request, res: Response) => {
     const { id } = req.params as { id: string };
     const descarte = await tarefaService.deletarTarefa(id);
   } catch (error) {
-    console.error("Erro ao concluir tarefa");
+    console.error("Erro ao deletar tarefa");
   }
 };
