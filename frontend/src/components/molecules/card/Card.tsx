@@ -3,13 +3,18 @@ import Label from "@/components/atoms/label/Label";
 import Check from "@/utils/icon/check";
 import theme from "@/utils/theme";
 
-const Card = ({ text, id, onEdit, onDelete }: any) => {
+const Card = ({ text, id, onEdit, onDelete, onConcluido, concluido }: any) => {
+  const changeColor = (concluido: any) => {
+    return concluido
+      ? "bg-green-500 text-white border-green-500 hover:bg-green-600"
+      : "bg-white text-black border-white hover:bg-slate-500 hover:text-white hover:border-transparent";
+  };
   return (
-    <div className="border-2 border-solid rounded-xl w-80 p-3 flex flex-col gap-5 m-5">
-      <Label
-        textSize={theme.font.size.medium}
-        text={text || "Sem tarefa adicionada"}
-      />
+    <div
+      className="border-2 border-solid rounded-xl w-80 p-3 flex flex-col gap-5 m-5"
+      key={id}
+    >
+      <Label textSize={theme.font.size.medium} text={text} />
 
       <div className="flex flex-rol gap-3 justify-end">
         <Button
@@ -28,7 +33,8 @@ const Card = ({ text, id, onEdit, onDelete }: any) => {
         <Button
           radios={theme.border.radios.large}
           label={"Concluido"}
-          onHover={theme.colors.bgHover.green}
+          onClick={onConcluido}
+          backgroundColor={changeColor(concluido)}
         >
           <Check />
         </Button>

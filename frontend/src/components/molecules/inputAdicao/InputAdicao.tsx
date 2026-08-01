@@ -3,7 +3,7 @@ import Input from "@/components/atoms/input/Input";
 import Label from "@/components/atoms/label/Label";
 import theme from "@/utils/theme";
 
-const InputAdicao = ({}: any) => {
+const InputAdicao = ({ value, onChange, onClick }: any) => {
   return (
     <div className="flex d-flex justify-center  flex-col items-center gap-5 m-5">
       <Label
@@ -16,6 +16,8 @@ const InputAdicao = ({}: any) => {
           borderColor={theme.border.color.white}
           borderRadios={theme.border.radios.xLarge}
           width={theme.border.width.large}
+          value={value}
+          onChange={onChange}
         />
         <Button
           label={"Adicionar"}
@@ -23,6 +25,7 @@ const InputAdicao = ({}: any) => {
           textSize={theme.font.size.medium}
           onHover={theme.colors.bgHover.gray}
           textHover={theme.font.hoverText.black}
+          onClick={onClick}
         />
       </div>
     </div>
