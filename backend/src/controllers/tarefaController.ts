@@ -40,6 +40,17 @@ export const updateCheck = async (req: Request, res: Response) => {
   }
 };
 
+export const updateTask = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params as { id: string };
+    const { titulo } = req.body as { titulo: string };
+    const tarefaAtualizada = await tarefaService.updateTask(id, titulo);
+    return res.status(200).json(tarefaAtualizada);
+  } catch (error) {
+    console.error("Erro ao editar tarefa, reinicie a pagina e tente novamente");
+  }
+};
+
 export const deletarTarefa = async (req: Request, res: Response) => {
   try {
     const { id } = req.params as { id: string };

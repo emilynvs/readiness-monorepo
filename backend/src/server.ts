@@ -3,12 +3,16 @@ import cors from "cors";
 import { prisma } from "./database/prisma";
 import tarefaRoutes from "./routes/tarefaRoutes";
 import { timeStamp } from "node:console";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger";
 
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get("/health", async (req, res) => {
   try {

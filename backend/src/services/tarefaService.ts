@@ -31,6 +31,21 @@ export const updateCheck = async (id: string) => {
   });
 };
 
+export const updateTask = async (id: string, texto: string) => {
+  const tarefaEncontrada = await findById(id);
+
+  if (!tarefaEncontrada) throw new Error("Tarefa não encontrada");
+
+  return await prisma.tarefa.update({
+    where: {
+      id,
+    },
+    data: {
+      titulo: texto,
+    },
+  });
+};
+
 export const findById = async (id: string) => {
   return await prisma.tarefa.findUnique({
     where: {

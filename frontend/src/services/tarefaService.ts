@@ -17,6 +17,11 @@ export const tarefaService = {
     return response.data;
   },
 
+  atualizarTarefa: async (id: string, texto: string) => {
+    const response = await api.put(`/tarefas/atualizarTarefa/${id}`);
+    return response.data;
+  },
+
   deletarTarefa: async (id: string) => {
     const response = await api.delete(`/tarefas/deletarTarefa/${id}`);
     return response.data;
