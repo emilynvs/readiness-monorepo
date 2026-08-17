@@ -46,6 +46,8 @@ router.get("/", tarefaController.getAll);
  *     responses:
  *       201:
  *         description: Tarefa criada com sucesso
+ *       500:
+ *         description: Erro interno do servidor
  */
 router.post("/criar", tarefaController.create);
 
@@ -65,6 +67,10 @@ router.post("/criar", tarefaController.create);
  *     responses:
  *       200:
  *         description: Status atualizado com sucesso
+ *       400:
+ *         description: ID inválidos
+ *       500:
+ *         description: Erro interno do servidor
  */
 router.put("/atualizarCheck/:id", tarefaController.updateCheck);
 
@@ -95,8 +101,12 @@ router.put("/atualizarCheck/:id", tarefaController.updateCheck);
  *     responses:
  *       200:
  *         description: Tarefa atualizada com sucesso
+ *       400:
+ *         description: ID inválidos
  *       404:
  *         description: Tarefa não encontrada
+ *       500:
+ *         description: Erro interno do servidor
  */
 router.put("/atualizarTarefa/:id", tarefaController.updateTask);
 
@@ -116,6 +126,12 @@ router.put("/atualizarTarefa/:id", tarefaController.updateTask);
  *     responses:
  *       200:
  *         description: Tarefa deletada com sucesso
+ *       400:
+ *         description: ID inválidos
+ *       404:
+ *         description: Tarefa não encontrada
+ *       500:
+ *         description: Erro interno do servidor
  */
 router.delete("/deletarTarefa/:id", tarefaController.deletarTarefa);
 
