@@ -56,6 +56,6 @@ export const deletarTarefa = async (req: Request, res: Response) => {
     const { id } = req.params as { id: string };
     const descarte = await tarefaService.deletarTarefa(id);
   } catch (error) {
-    console.error("Erro ao deletar tarefa");
+    console.error("Erro ao deletar tarefa", error);
   }
 };
