@@ -14,7 +14,7 @@ const Card = ({ text, id, onEdit, onDelete, onConcluido, concluido }: any) => {
       className="border-2 border-solid rounded-xl w-80 p-3 flex flex-col gap-5 m-5"
       key={id}
     >
-      <Label textSize={theme.font.size.medium} text={text} />
+      <Label textSize={theme.font.size.medium} text={text} maxCaracteres={39} />
 
       <div className="flex flex-rol gap-3 justify-end">
         <Button

@@ -8,7 +8,7 @@ const InputAdicao = ({ value, onChange, onClick }: any) => {
     <div className="flex d-flex justify-center  flex-col items-center gap-5 m-5">
       <Label
         text={"Vamos planejar o novo dia?"}
-        textSize={theme.font.size.large}
+        textSize={theme.font.size.xLarge}
       />
       <div className="flex gap-4">
         <Input
@@ -18,6 +18,8 @@ const InputAdicao = ({ value, onChange, onClick }: any) => {
           width={theme.border.width.large}
           value={value}
           onChange={onChange}
+          height={"h-10"}
+          focusBorder={theme.border.color.warning}
         />
         <Button
           label={"Adicionar"}
