@@ -18,7 +18,10 @@ export const tarefaService = {
   },
 
   atualizarTarefa: async (id: string, texto: string) => {
-    const response = await api.put(`/tarefas/atualizarTarefa/${id}`);
+    const response = await api.put(`/tarefas/atualizarTarefa/${id}`, {
+      titulo: texto,
+    });
+
     return response.data;
   },
 
