@@ -22,7 +22,7 @@ interface TarefaContextData {
   loading: boolean;
   updateCheck: (id: string) => Promise<void>;
   deletarTarefa: (id: string) => Promise<void>;
-  updateTarefa: (id: string, texto: string) => Promise<void>;
+  updateTarefa: (id: string, texto: string, descricao: string) => Promise<void>;
 }
 
 const TarefaContext = createContext<TarefaContextData>({} as TarefaContextData);
@@ -73,9 +73,13 @@ export const TarefaProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const updateTarefa = async (id: string, texto: string) => {
+  const updateTarefa = async (id: string, texto: string, descricao: string) => {
     try {
-      const response = await tarefaService.atualizarTarefa(id, texto);
+      const response = await tarefaService.atualizarTarefa(
+        id,
+        texto,
+        descricao,
+      );
 
       setTarefas((tarefasAtuais) =>
         tarefasAtuais.map((tarefa) =>
