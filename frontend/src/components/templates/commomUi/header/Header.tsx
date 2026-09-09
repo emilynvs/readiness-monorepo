@@ -7,7 +7,7 @@ export default function Header() {
         <span className="font-bold text-xl">READINESS</span>
         <nav className="flex grid grid-cols-3 justify-items-end">
           <Link href="/">Home</Link>
-          <Link href="/cronometro">Cronometro</Link>
+          <Link href="/pomodoro">Pomodoro</Link>
           <Link href="/concluidas">Conluídas</Link>
         </nav>
       </header>

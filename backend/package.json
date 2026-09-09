@@ -8,7 +8,9 @@
     "start": "node dist/index.js",
     "prisma:studio": "npx prisma studio",
     "prisma:migrate": "npx prisma migrate dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -27,10 +29,17 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.5",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.5.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "prisma": "^5.22.0",
+    "ts-jest": "^29.4.12",
     "ts-node-dev": "^2.0.0",
     "typescript": "^6.0.2"
   }

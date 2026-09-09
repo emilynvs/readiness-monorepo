@@ -1,10 +1,11 @@
 "use client";
 
-import { CriarTarefa } from "@/components/form/CriarTarefa";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Label from "../atoms/label/Label";
+import theme from "@/utils/theme";
 
-export default function Cronometro() {
+export default function Pomodoro() {
   const router = useRouter();
 
   const pararEVoltar = () => {
@@ -38,11 +39,10 @@ export default function Cronometro() {
   };
 
   return (
-    <div>
-      <h1>Intensivo</h1>
-
-      <div>{formatarTempo()}</div>
-      <div>
+    <div className="flex flex-col justify-center items-center gap-9 border-4 border-green-500 h-screen">
+      <Label text={"Intensivo"} textSize={theme.font.size.xLarge} />
+      <div className="text-5xl border-2 p-5 rounded-xlg">{formatarTempo()}</div>
+      <div className="flex gap-5">
         <button onClick={() => setAtivo(!ativo)}>
           {ativo ? "Pausar" : "Iniciar"}
         </button>
@@ -55,9 +55,6 @@ export default function Cronometro() {
         >
           Reiniciar
         </button>
-
-        <button onClick={pararEVoltar}>Voltar para a lista</button>
-        <CriarTarefa />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { useTarefas } from "@/context/TarefaContext";
 import CardModal from "../organisms/CardModal";
 import { Tarefa } from "@/types";
 
-const Main = () => {
+const Listagem = () => {
   const [tarefa, setTarefa] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [tarefaSelecionada, setTarefaSelecionada] = useState<Tarefa | null>(
@@ -58,6 +58,7 @@ const Main = () => {
                 concluido={t.concluido}
                 onDelete={() => handleDeletar(t)}
                 onConcluido={() => handleConcluir(t)}
+                descricao={t.descricao}
                 onEdit={() => {
                   setTarefaSelecionada(t);
                   setOpenModal(true);
@@ -88,4 +89,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Listagem;

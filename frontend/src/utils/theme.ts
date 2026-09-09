@@ -41,6 +41,9 @@ const theme = {
       medium: "text-md",
       large: "text-lg",
       xLarge: "text-2xl",
+      xxLarge: "text-3xl",
+      xxxLarge: "text-4xl",
+      XLarge: "text-8xl",
     },
   },
   border: {

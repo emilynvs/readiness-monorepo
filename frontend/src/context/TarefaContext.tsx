@@ -12,6 +12,7 @@ import {
 interface Tarefa {
   id: string;
   titulo: string;
+  descricao?: string;
   concluido: boolean;
   createdAt: string;
 }
@@ -42,16 +43,7 @@ export const TarefaProvider = ({ children }: { children: ReactNode }) => {
       }
     };
     loadTarefas();
-  }, [tarefas]);
-
-  const listarTarefa = async () => {
-    try {
-      const listagem = await tarefaService.listar();
-      setTarefas(listagem.map((t) => t));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  }, []);
 
   const addTarefa = async (titulo: string) => {
     try {
@@ -91,13 +83,17 @@ export const TarefaProvider = ({ children }: { children: ReactNode }) => {
       console.error(error);
     }
   };
-
   const deletarTarefa = async (id: string) => {
     try {
-      const tarefaDeletada = await tarefaService.deletarTarefa(id);
-      listarTarefa();
+      await tarefaService.deletarTarefa(id);
+
+      setTarefas((prev) => {
+        const filtradas = prev.filter((tarefa) => tarefa.id !== id);
+
+        return filtradas;
+      });
     } catch (error) {
-      console.error(error);
+      console.error("ERRO:", error);
     }
   };
 

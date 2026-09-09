@@ -1,9 +1,9 @@
-import Main from "@/components/pages/main";
+import Listagem from "@/components/pages/listagem";
 
 export default function Home() {
   return (
     <main>
-      <Main />
+      <Listagem />
     </main>
   );
 }

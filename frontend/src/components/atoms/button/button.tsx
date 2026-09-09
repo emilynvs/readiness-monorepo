@@ -6,12 +6,15 @@ const Button = ({
   radios,
   textSize,
   textHover,
+  borderColor,
   children,
+  padding = "p-1",
+  paddingX = "px-2",
 }: any) => {
   return (
     <button
       onClick={onClick}
-      className={`${backgroundColor} ${onHover} ${textHover} ${radios} p-1 px-2 border-2 border-white 
+      className={`${backgroundColor} ${onHover} ${textHover} ${radios} ${padding} ${paddingX} border-2 ${borderColor}
       cursor-pointer duration-500 ease-in-out ${textSize} ${textHover} flex items-center flex-row gap-1`}
     >
       {children}
