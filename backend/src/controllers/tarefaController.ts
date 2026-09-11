@@ -59,7 +59,8 @@ export const updateTask = async (req: Request, res: Response) => {
 export const deletarTarefa = async (req: Request, res: Response) => {
   try {
     const { id } = req.params as { id: string };
-    const descarte = await tarefaService.deletarTarefa(id);
+    const tarefaDeletada= await tarefaService.deletarTarefa(id);
+    return res.status(200).json(tarefaDeletada);
   } catch (error) {
     console.error("Erro ao deletar tarefa", error);
   }

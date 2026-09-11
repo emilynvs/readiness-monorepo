@@ -67,7 +67,7 @@ export const deletarTarefa = async (id: string) => {
 
   if (!tarefaEncontrada) throw new Error("Tarefa não encontrada");
 
-  await prisma.tarefa.delete({
+  return await prisma.tarefa.delete({
     where: {
       id,
     },

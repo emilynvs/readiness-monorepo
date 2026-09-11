@@ -121,7 +121,7 @@ router.put("/atualizarTarefa/:id", tarefaController.updateTask);
  *         name: id
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *         example: 1
  *     responses:
  *       200:
