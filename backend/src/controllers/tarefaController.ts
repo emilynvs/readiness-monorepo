@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 import * as tarefaService from "../services/tarefaService";
 import { CreateTarefaDTO } from "../models/tarefaDTO";
-import { Tarefa } from "@prisma/client";
 
 export const getAll = async (req: Request, res: Response) => {
   try {
@@ -44,7 +43,13 @@ export const updateTask = async (req: Request, res: Response) => {
   try {
     const { id } = req.params as { id: string };
     const { titulo } = req.body as { titulo: string };
-    const tarefaAtualizada = await tarefaService.updateTask(id, titulo);
+    const { descricao } = req.body as { descricao: string };
+
+    const tarefaAtualizada = await tarefaService.updateTask(
+      id,
+      titulo,
+      descricao,
+    );
     return res.status(200).json(tarefaAtualizada);
   } catch (error) {
     console.error("Erro ao editar tarefa, reinicie a pagina e tente novamente");

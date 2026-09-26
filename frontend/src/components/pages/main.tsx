@@ -4,7 +4,7 @@ import { useState } from "react";
 import Card from "../molecules/card/Card";
 import InputAdicao from "../molecules/inputAdicao/InputAdicao";
 import { useTarefas } from "@/context/TarefaContext";
-import EditModal from "../organisms/EditModal";
+import CardModal from "../organisms/CardModal";
 import { Tarefa } from "@/types";
 
 const Main = () => {
@@ -38,8 +38,8 @@ const Main = () => {
     return deletarTarefa(t.id);
   };
 
-  const handleAtualizar = (id: string, texto: string) => {
-    return updateTarefa(id, texto);
+  const handleAtualizar = (id: string, texto: string, descricao: string) => {
+    return updateTarefa(id, texto, descricao);
   };
   return (
     <div className=" h-full">
@@ -67,20 +67,22 @@ const Main = () => {
           );
         })}
       </div>
-      <EditModal
+      <CardModal
         open={openModal}
         texto={tarefaSelecionada?.titulo ?? ""}
         onClose={() => {
           setOpenModal(false);
           setTarefaSelecionada(null);
         }}
-        onSave={(t: any) => {
+        onSave={(text: any, descricao: any) => {
           if (!tarefaSelecionada) return;
-          handleAtualizar(tarefaSelecionada.id, t);
+          handleAtualizar(tarefaSelecionada.id, text, descricao);
 
           setOpenModal(false);
           setTarefaSelecionada(null);
         }}
+        descricao={tarefaSelecionada?.descricao}
+        criadoEm={tarefaSelecionada?.createdAt}
       />
     </div>
   );
