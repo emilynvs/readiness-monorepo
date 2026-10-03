@@ -1,6 +1,5 @@
 "use client";
 
-import { CriarTarefa } from "@/components/form/CriarTarefa";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -57,7 +56,6 @@ export default function Cronometro() {
         </button>
 
         <button onClick={pararEVoltar}>Voltar para a lista</button>
-        <CriarTarefa />
       </div>
     </div>
   );
