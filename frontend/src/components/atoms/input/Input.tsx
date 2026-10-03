@@ -1,3 +1,5 @@
+import theme from "@/utils/theme";
+
 const Input = ({
   placeholder,
   backgroundColor,
@@ -6,11 +8,13 @@ const Input = ({
   width,
   value,
   onChange,
+  height,
+  focusBorder,
 }: any) => {
   return (
-    <input
+    <textarea
       placeholder={placeholder}
-      className={`border-2 ${borderColor} ${borderRadios} p-1 ${width}`}
+      className={`border-2 ${borderColor} ${borderRadios} p-2 ${width} resize-none overflow-hidden ${height} focus:${focusBorder} focus:outline-none`}
       value={value}
       onChange={onChange}
     />

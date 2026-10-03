@@ -51,6 +51,7 @@ const theme = {
       xLarge: "rounded-2xl",
     },
     color: {
+      warning: "border-amber-300",
       black: "border-black",
       white: "border-white",
       gray: "border-stone-300",

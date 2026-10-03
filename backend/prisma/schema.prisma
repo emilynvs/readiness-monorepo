@@ -18,6 +18,7 @@ model Tarefa {
   titulo String
   concluido Boolean @default(false)
   createdAt DateTime @default(now())
+  descricao String
 
   @@map("tarefas")
 }

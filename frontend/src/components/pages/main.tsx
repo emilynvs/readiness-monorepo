@@ -4,12 +4,24 @@ import { useState } from "react";
 import Card from "../molecules/card/Card";
 import InputAdicao from "../molecules/inputAdicao/InputAdicao";
 import { useTarefas } from "@/context/TarefaContext";
+import CardModal from "../organisms/CardModal";
+import { Tarefa } from "@/types";
 
 const Main = () => {
   const [tarefa, setTarefa] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [tarefaSelecionada, setTarefaSelecionada] = useState<Tarefa | null>(
+    null,
+  );
 
-  const { tarefas, loading, updateCheck, addTarefa, deletarTarefa } =
-    useTarefas();
+  const {
+    tarefas,
+    loading,
+    updateCheck,
+    addTarefa,
+    deletarTarefa,
+    updateTarefa,
+  } = useTarefas();
 
   const handleAdicionar = async (e: React.SubmitEvent) => {
     e.preventDefault();
@@ -26,6 +38,9 @@ const Main = () => {
     return deletarTarefa(t.id);
   };
 
+  const handleAtualizar = (id: string, texto: string, descricao: string) => {
+    return updateTarefa(id, texto, descricao);
+  };
   return (
     <div className=" h-full">
       <InputAdicao
@@ -36,16 +51,39 @@ const Main = () => {
       <div className="flex flex-row flex-wrap w-full">
         {tarefas.map((t) => {
           return (
-            <Card
-              text={t.titulo}
-              key={t.id}
-              concluido={t.concluido}
-              onDelete={() => handleDeletar(t)}
-              onConcluido={() => handleConcluir(t)}
-            />
+            <div key={t.id}>
+              <Card
+                text={t.titulo}
+                key={t.id}
+                concluido={t.concluido}
+                onDelete={() => handleDeletar(t)}
+                onConcluido={() => handleConcluir(t)}
+                onEdit={() => {
+                  setTarefaSelecionada(t);
+                  setOpenModal(true);
+                }}
+              />
+            </div>
           );
         })}
       </div>
+      <CardModal
+        open={openModal}
+        texto={tarefaSelecionada?.titulo ?? ""}
+        onClose={() => {
+          setOpenModal(false);
+          setTarefaSelecionada(null);
+        }}
+        onSave={(text: any, descricao: any) => {
+          if (!tarefaSelecionada) return;
+          handleAtualizar(tarefaSelecionada.id, text, descricao);
+
+          setOpenModal(false);
+          setTarefaSelecionada(null);
+        }}
+        descricao={tarefaSelecionada?.descricao}
+        criadoEm={tarefaSelecionada?.createdAt}
+      />
     </div>
   );
 };

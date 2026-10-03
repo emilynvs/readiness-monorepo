@@ -22,7 +22,7 @@ interface TarefaContextData {
   loading: boolean;
   updateCheck: (id: string) => Promise<void>;
   deletarTarefa: (id: string) => Promise<void>;
-  updateTarefa: (id: string, texto: string) => Promise<void>;
+  updateTarefa: (id: string, texto: string, descricao: string) => Promise<void>;
 }
 
 const TarefaContext = createContext<TarefaContextData>({} as TarefaContextData);
@@ -42,7 +42,16 @@ export const TarefaProvider = ({ children }: { children: ReactNode }) => {
       }
     };
     loadTarefas();
-  }, []);
+  }, [tarefas]);
+
+  const listarTarefa = async () => {
+    try {
+      const listagem = await tarefaService.listar();
+      setTarefas(listagem.map((t) => t));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const addTarefa = async (titulo: string) => {
     try {
@@ -64,10 +73,20 @@ export const TarefaProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const updateTarefa = async (id: string, texto: string) => {
+  const updateTarefa = async (id: string, texto: string, descricao: string) => {
     try {
-      const tarefaAtualizada = await tarefaService.atualizarTarefa(id, texto);
-      setTarefas((prev) => [...prev]);
+      const response = await tarefaService.atualizarTarefa(
+        id,
+        texto,
+        descricao,
+      );
+
+      setTarefas((tarefasAtuais) =>
+        tarefasAtuais.map((tarefa) =>
+          tarefa.id === id ? { ...tarefa, titulo: texto } : tarefa,
+        ),
+      );
+      return response;
     } catch (error) {
       console.error(error);
     }
@@ -76,7 +95,7 @@ export const TarefaProvider = ({ children }: { children: ReactNode }) => {
   const deletarTarefa = async (id: string) => {
     try {
       const tarefaDeletada = await tarefaService.deletarTarefa(id);
-      setTarefas((prev) => [...prev]);
+      listarTarefa();
     } catch (error) {
       console.error(error);
     }
